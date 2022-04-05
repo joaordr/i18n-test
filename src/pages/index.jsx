@@ -5,7 +5,7 @@ import { LanguageContext } from '../contexts/LanguageContext';
 import { useContext } from 'react';
 
 export default function Home() {
-  const { router, locale, translations } = useContext(LanguageContext);
+  const { changeLanguage, locale, translations } = useContext(LanguageContext);
 
   return (
     <div className={styles.container}>
@@ -18,7 +18,7 @@ export default function Home() {
         <div className="select">
           <select
             value={locale}
-            onChange={(e) => { router.push('/', null, { locale: e.target.value }) }}
+            onChange={(e) => { changeLanguage(e.target.value) }}
           >
             <option value="en">Ingles</option>
             <option value="pt">Portugues</option>

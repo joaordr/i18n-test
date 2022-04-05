@@ -9,7 +9,7 @@ export const LanguageContext = createContext({});
 
 export function LanguageProvider({ children }) {
     const router = useRouter();
-    const { locale } = router;
+    const { locale, pathname, asPath, query } = router;
     const [translations, setTranslations] = useState(locale == 'pt' ? tranlationsPT : tranlationsEN);
 
     useEffect(() => {
@@ -20,8 +20,12 @@ export function LanguageProvider({ children }) {
         }
     }, [locale])
 
+    function changeLanguage(newLocale) {
+        router.push({ pathname, query }, asPath, { locale: newLocale })
+    }
+
     return (
-        <LanguageContext.Provider value={{ router, locale, translations }}>
+        <LanguageContext.Provider value={{ translations, locale, changeLanguage }}>
             {children}
         </LanguageContext.Provider>
     )
