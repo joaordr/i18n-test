@@ -1,9 +1,13 @@
-import { appWithTranslation } from 'next-i18next';
+import { LanguageProvider } from '../contexts/LanguageContext';
 
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <LanguageProvider>
+      <Component {...pageProps} />
+    </LanguageProvider>
+  )
 }
 
-export default appWithTranslation(MyApp)
+export default MyApp
